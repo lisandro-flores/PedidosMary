@@ -25,8 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Actualizar links de WhatsApp genéricos
     document.querySelectorAll('a.config-whatsapp').forEach(el => {
-        if (!el.getAttribute('href') || el.getAttribute('href') === '#') {
-            el.href = CONFIG.getWhatsAppLink();
-        }
+        // Force update to ensure correct phone number is used
+        el.href = CONFIG.getWhatsAppLink();
     });
 });
