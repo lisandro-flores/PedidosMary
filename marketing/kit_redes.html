@@ -17,415 +17,410 @@
         .post-preview { width: 270px; height: 270px; }
     </style>
 </head>
-<body class="bg-slate-50">
+<body class="p-8">
 
-    <!-- Login Overlay -->
-    <div id="login-overlay" class="fixed inset-0 z-50 bg-slate-900 flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl p-8 max-w-md w-full text-center shadow-2xl">
-            <div class="w-20 h-20 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center text-4xl mx-auto mb-6">
+    <!-- Login Modal -->
+    <div id="login-modal" class="fixed inset-0 bg-slate-900 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl text-center">
+            <div class="w-20 h-20 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-6">
                 <i class="fa-solid fa-lock"></i>
             </div>
-            <h2 class="text-2xl font-bold text-slate-900 mb-2">Acceso Restringido</h2>
-            <p class="text-slate-500 mb-6">Este kit es exclusivo para la administración de Pedidos Mary.</p>
+            <h2 class="text-3xl font-bold text-slate-900 mb-2">Acceso Restringido</h2>
+            <p class="text-slate-600 mb-8">Esta área es exclusiva para la administración del negocio.</p>
             
-            <form onsubmit="checkPassword(event)" class="space-y-4">
-                <input type="password" id="passwordInput" placeholder="Contraseña" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-orange-500 outline-none transition" autofocus>
-                <button type="submit" class="w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-slate-800 transition">
-                    Entrar
+            <form id="login-form" class="space-y-4">
+                <input type="password" id="password-input" placeholder="Ingresa la contraseña" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition text-center text-lg" required>
+                <button type="submit" class="w-full bg-slate-900 text-white py-3 rounded-xl font-bold hover:bg-slate-800 transition shadow-lg">
+                    Entrar al Kit
                 </button>
                 <p id="error-msg" class="text-red-500 text-sm hidden">Contraseña incorrecta</p>
             </form>
-            <p class="text-xs text-slate-400 mt-6">Contraseña por defecto: <span class="font-mono bg-slate-100 px-1 rounded">mary2024</span></p>
         </div>
     </div>
 
-    <!-- Main Content (Hidden by default) -->
-    <div id="main-content" class="p-8 hidden">
-        <div class="max-w-6xl mx-auto">
-            <header class="text-center mb-12">
-                <h1 class="text-4xl font-extrabold text-slate-900 mb-4">🎨 Kit de Marketing Digital</h1>
-                <p class="text-lg text-slate-600">Materiales listos para publicar en tus redes sociales. <br>Toma captura de pantalla a tamaño completo para usarlos.</p>
-            </header>
+    <div id="secure-content" class="max-w-6xl mx-auto hidden">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-extrabold text-slate-900 mb-4">🎨 Kit de Marketing Digital</h1>
+            <p class="text-lg text-slate-600">Materiales listos para publicar en tus redes sociales. <br>Toma captura de pantalla a tamaño completo para usarlos.</p>
+        </header>
 
-            <!-- Stories Section -->
-            <h2 class="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-orange-500 pl-4">Historias de Instagram / Estados de WhatsApp</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                
-                <!-- Story 1: Promo General -->
-                <div>
-                    <h3 class="font-bold text-slate-700 mb-2">1. Promo General</h3>
-                    <div class="preview-container story-preview rounded-2xl shadow-lg bg-white relative group">
-                        <div class="story-size bg-gradient-to-br from-orange-500 to-pink-600 text-white p-16 flex flex-col justify-between relative overflow-hidden">
-                            <!-- Background Pattern -->
-                            <div class="absolute top-0 left-0 w-full h-full opacity-10">
-                                <i class="fa-solid fa-bag-shopping text-[400px] absolute -right-20 -top-20"></i>
-                            </div>
-                            
-                            <div class="relative z-10">
-                                <div class="bg-white/20 backdrop-blur-md inline-block px-6 py-2 rounded-full font-bold mb-8">
-                                    🛍️ Personal Shopper
-                                </div>
-                                <h1 class="text-8xl font-extrabold leading-tight mb-6">
-                                    PIDE <br> SHEIN <br> Y TEMU
-                                </h1>
-                                <div class="text-5xl font-bold bg-white text-orange-600 inline-block px-8 py-4 transform -rotate-2 shadow-xl">
-                                    🚫 SIN TARJETA
-                                </div>
-                            </div>
-
-                            <div class="relative z-10 bg-black/20 backdrop-blur-md p-8 rounded-3xl border border-white/30">
-                                <div class="flex items-center gap-6 mb-6">
-                                    <i class="fa-brands fa-whatsapp text-6xl text-green-400"></i>
-                                    <div>
-                                        <p class="text-3xl font-bold">Manda tus links al:</p>
-                                        <p class="text-5xl font-extrabold config-phone">123 456 7890</p>
-                                    </div>
-                                </div>
-                                <p class="text-3xl text-center border-t border-white/20 pt-6">
-                                    Entregas seguras en <span class="font-bold config-city">[Tu Ciudad]</span>
-                                </p>
-                            </div>
+        <!-- Stories Section -->
+        <h2 class="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-orange-500 pl-4">Historias de Instagram / Estados de WhatsApp</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            
+            <!-- Story 1: Promo General -->
+            <div>
+                <h3 class="font-bold text-slate-700 mb-2">1. Promo General</h3>
+                <div class="preview-container story-preview rounded-2xl shadow-lg bg-white relative group">
+                    <div class="story-size bg-gradient-to-br from-orange-500 to-pink-600 text-white p-16 flex flex-col justify-between relative overflow-hidden">
+                        <!-- Background Pattern -->
+                        <div class="absolute top-0 left-0 w-full h-full opacity-10">
+                            <i class="fa-solid fa-bag-shopping text-[400px] absolute -right-20 -top-20"></i>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Story 2: Cierre de Pedido -->
-                <div>
-                    <h3 class="font-bold text-slate-700 mb-2">2. Urgencia (Domingo)</h3>
-                    <div class="preview-container story-preview rounded-2xl shadow-lg bg-white relative group">
-                        <div class="story-size bg-slate-900 text-white p-16 flex flex-col justify-center items-center text-center relative">
-                            <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-                            
-                            <div class="w-48 h-48 bg-red-500 rounded-full flex items-center justify-center mb-12 animate-pulse">
-                                <i class="fa-regular fa-clock text-8xl"></i>
+                        
+                        <div class="relative z-10">
+                            <div class="bg-white/20 backdrop-blur-md inline-block px-6 py-2 rounded-full font-bold mb-8">
+                                🛍️ Personal Shopper
                             </div>
-
-                            <h2 class="text-6xl font-bold text-red-500 mb-4 uppercase tracking-widest">¡Atención!</h2>
-                            <h1 class="text-8xl font-extrabold mb-12">
-                                CERRAMOS <br> PEDIDO <br> HOY
+                            <h1 class="text-8xl font-extrabold leading-tight mb-6">
+                                PIDE <br> SHEIN <br> Y TEMU
                             </h1>
-                            
-                            <div class="bg-white text-slate-900 p-8 rounded-3xl w-full mb-12 transform rotate-2">
-                                <p class="text-4xl font-bold">Deposita tu 50% antes de las 8:00 PM</p>
+                            <div class="text-5xl font-bold bg-white text-orange-600 inline-block px-8 py-4 transform -rotate-2 shadow-xl">
+                                🚫 SIN TARJETA
                             </div>
-
-                            <p class="text-3xl text-slate-400">No te quedes fuera de este pedido.</p>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Story 3: Testimonio -->
-                <div>
-                    <h3 class="font-bold text-slate-700 mb-2">3. Confianza</h3>
-                    <div class="preview-container story-preview rounded-2xl shadow-lg bg-white relative group">
-                        <div class="story-size bg-white text-slate-900 p-16 flex flex-col relative">
-                            <div class="absolute top-0 right-0 w-64 h-64 bg-orange-100 rounded-bl-full -z-0"></div>
-                            
-                            <div class="relative z-10 mt-20 mb-auto">
-                                <i class="fa-solid fa-quote-left text-8xl text-orange-200 mb-8"></i>
-                                <h2 class="text-6xl font-bold leading-tight mb-8">
-                                    "Me encantó mi ropa. Llegó súper rápido y la atención fue excelente."
-                                </h2>
-                                <div class="flex items-center gap-6">
-                                    <div class="w-20 h-20 bg-slate-200 rounded-full"></div>
-                                    <div>
-                                        <p class="text-3xl font-bold">Cliente Feliz</p>
-                                        <div class="text-orange-500 text-2xl">★★★★★</div>
-                                    </div>
+                        <div class="relative z-10 bg-black/20 backdrop-blur-md p-8 rounded-3xl border border-white/30">
+                            <div class="flex items-center gap-6 mb-6">
+                                <i class="fa-brands fa-whatsapp text-6xl text-green-400"></i>
+                                <div>
+                                    <p class="text-3xl font-bold">Manda tus links al:</p>
+                                    <p class="text-5xl font-extrabold config-phone">123 456 7890</p>
                                 </div>
                             </div>
-
-                            <div class="bg-slate-50 p-10 rounded-3xl border-2 border-slate-100 text-center">
-                                <p class="text-3xl font-bold text-slate-600 mb-4">Únete a nuestros clientes en</p>
-                                <p class="text-5xl font-extrabold text-orange-600 config-city">[Tu Ciudad]</p>
-                            </div>
+                            <p class="text-3xl text-center border-t border-white/20 pt-6">
+                                Entregas seguras en <span class="font-bold config-city">[Tu Ciudad]</span>
+                            </p>
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            <!-- Feed Posts Section -->
-            <h2 class="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-purple-500 pl-4">Posts para Feed (Facebook / Instagram)</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                
-                <!-- Post 1: Pasos -->
-                <div>
-                    <h3 class="font-bold text-slate-700 mb-2">1. Cómo Funciona</h3>
-                    <div class="preview-container post-preview rounded-2xl shadow-lg bg-white relative">
-                        <div class="post-size bg-white p-12 flex flex-col justify-between border-[20px] border-orange-50">
-                            <h2 class="text-7xl font-extrabold text-center text-slate-900">¿CÓMO PEDIR?</h2>
-                            
-                            <div class="space-y-8">
-                                <div class="flex items-center gap-8 bg-slate-50 p-6 rounded-2xl">
-                                    <div class="w-24 h-24 bg-orange-500 text-white rounded-full flex items-center justify-center text-5xl font-bold">1</div>
-                                    <p class="text-4xl font-medium text-slate-700">Elige tu ropa en Shein/Temu</p>
-                                </div>
-                                <div class="flex items-center gap-8 bg-slate-50 p-6 rounded-2xl">
-                                    <div class="w-24 h-24 bg-orange-500 text-white rounded-full flex items-center justify-center text-5xl font-bold">2</div>
-                                    <p class="text-4xl font-medium text-slate-700">Mándame los links</p>
-                                </div>
-                                <div class="flex items-center gap-8 bg-slate-50 p-6 rounded-2xl">
-                                    <div class="w-24 h-24 bg-orange-500 text-white rounded-full flex items-center justify-center text-5xl font-bold">3</div>
-                                    <p class="text-4xl font-medium text-slate-700">Paga el 50% en Oxxo</p>
-                                </div>
-                            </div>
-
-                            <div class="text-center bg-slate-900 text-white p-6 rounded-xl">
-                                <p class="text-3xl font-bold">WhatsApp: <span class="config-phone text-orange-400">1234567890</span></p>
-                            </div>
+            <!-- Story 2: Cierre de Pedido -->
+            <div>
+                <h3 class="font-bold text-slate-700 mb-2">2. Urgencia (Domingo)</h3>
+                <div class="preview-container story-preview rounded-2xl shadow-lg bg-white relative group">
+                    <div class="story-size bg-slate-900 text-white p-16 flex flex-col justify-center items-center text-center relative">
+                        <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+                        
+                        <div class="w-48 h-48 bg-red-500 rounded-full flex items-center justify-center mb-12 animate-pulse">
+                            <i class="fa-regular fa-clock text-8xl"></i>
                         </div>
+
+                        <h2 class="text-6xl font-bold text-red-500 mb-4 uppercase tracking-widest">¡Atención!</h2>
+                        <h1 class="text-8xl font-extrabold mb-12">
+                            CERRAMOS <br> PEDIDO <br> HOY
+                        </h1>
+                        
+                        <div class="bg-white text-slate-900 p-8 rounded-3xl w-full mb-12 transform rotate-2">
+                            <p class="text-4xl font-bold">Deposita tu 50% antes de las 8:00 PM</p>
+                        </div>
+
+                        <p class="text-3xl text-slate-400">No te quedes fuera de este pedido.</p>
                     </div>
                 </div>
+            </div>
 
-                <!-- Post 2: Frase -->
-                <div>
-                    <h3 class="font-bold text-slate-700 mb-2">2. Frase Motivacional</h3>
-                    <div class="preview-container post-preview rounded-2xl shadow-lg bg-white relative">
-                        <div class="post-size bg-slate-900 text-white p-12 flex flex-col justify-center items-center text-center">
-                            <h2 class="text-8xl font-extrabold leading-tight mb-8">
-                                LA VIDA ES <br> CORTA. <br> <span class="text-orange-500">CÓMPRATE <br> ESE OUTFIT.</span>
+            <!-- Story 3: Testimonio -->
+            <div>
+                <h3 class="font-bold text-slate-700 mb-2">3. Confianza</h3>
+                <div class="preview-container story-preview rounded-2xl shadow-lg bg-white relative group">
+                    <div class="story-size bg-white text-slate-900 p-16 flex flex-col relative">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-orange-100 rounded-bl-full -z-0"></div>
+                        
+                        <div class="relative z-10 mt-20 mb-auto">
+                            <i class="fa-solid fa-quote-left text-8xl text-orange-200 mb-8"></i>
+                            <h2 class="text-6xl font-bold leading-tight mb-8">
+                                "Me encantó mi ropa. Llegó súper rápido y la atención fue excelente."
                             </h2>
-                            <p class="text-4xl text-slate-400">Nosotros te lo traemos a <span class="config-city text-white">[Tu Ciudad]</span></p>
-                        </div>
-                    </div>
-                </div>
-
-                 <!-- Post 3: Info -->
-                 <div>
-                    <h3 class="font-bold text-slate-700 mb-2">3. Tarjeta Digital</h3>
-                    <div class="preview-container post-preview rounded-2xl shadow-lg bg-white relative">
-                        <div class="post-size bg-gradient-to-r from-orange-400 to-pink-500 p-12 flex items-center justify-center">
-                            <div class="bg-white/95 backdrop-blur rounded-3xl p-16 text-center w-full shadow-2xl">
-                                <div class="w-32 h-32 bg-slate-900 text-white rounded-full flex items-center justify-center text-6xl mx-auto mb-8">
-                                    <i class="fa-solid fa-bag-shopping"></i>
-                                </div>
-                                <h2 class="text-6xl font-extrabold text-slate-900 mb-4">Pedidos Mary</h2>
-                                <p class="text-3xl text-slate-500 mb-8 uppercase tracking-widest">Personal Shopper</p>
-                                
-                                <div class="space-y-6 text-left inline-block">
-                                    <div class="flex items-center gap-6 text-3xl text-slate-700">
-                                        <i class="fa-brands fa-whatsapp text-green-500"></i> <span class="config-phone">1234567890</span>
-                                    </div>
-                                    <div class="flex items-center gap-6 text-3xl text-slate-700">
-                                        <i class="fa-solid fa-location-dot text-red-500"></i> <span class="config-city">[Tu Ciudad]</span>
-                                    </div>
+                            <div class="flex items-center gap-6">
+                                <div class="w-20 h-20 bg-slate-200 rounded-full"></div>
+                                <div>
+                                    <p class="text-3xl font-bold">Cliente Feliz</p>
+                                    <div class="text-orange-500 text-2xl">★★★★★</div>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="bg-slate-50 p-10 rounded-3xl border-2 border-slate-100 text-center">
+                            <p class="text-3xl font-bold text-slate-600 mb-4">Únete a nuestros clientes en</p>
+                            <p class="text-5xl font-extrabold text-orange-600 config-city">[Tu Ciudad]</p>
+                        </div>
                     </div>
                 </div>
-
             </div>
 
-        <!-- Printables Section -->
-            <h2 class="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-blue-500 pl-4">Material para Imprimir</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                
-                <!-- Flyer -->
-                <div>
-                    <h3 class="font-bold text-slate-700 mb-2">1. Volante Media Carta (2 por hoja)</h3>
-                    <div class="preview-container rounded-2xl shadow-lg bg-white relative p-4">
-                        <div id="flyer-print" class="bg-white w-[816px] h-[1056px] origin-top-left scale-[0.3] border border-gray-200 p-8 flex flex-col gap-8">
-                            <!-- Top Half -->
-                            <div class="h-1/2 border-b-2 border-dashed border-gray-300 pb-8 flex flex-col justify-between">
-                                <div class="flex justify-between items-start">
-                                    <div>
-                                        <h1 class="text-6xl font-extrabold text-slate-900">PEDIDOS <br> <span class="text-orange-600">MARY</span></h1>
-                                        <p class="text-2xl text-slate-500 mt-2">Tu Personal Shopper de Confianza</p>
-                                    </div>
-                                    <div class="text-right">
-                                        <div class="bg-slate-900 text-white px-6 py-2 rounded-full text-2xl font-bold mb-2">SHEIN & TEMU</div>
-                                        <p class="text-xl text-slate-600">Sin Tarjeta de Crédito</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex justify-around items-center my-4">
-                                    <div class="text-center">
-                                        <i class="fa-brands fa-whatsapp text-6xl text-green-500 mb-2"></i>
-                                        <p class="text-2xl font-bold">Manda Links</p>
-                                    </div>
-                                    <div class="text-center">
-                                        <i class="fa-solid fa-money-bill-wave text-6xl text-blue-500 mb-2"></i>
-                                        <p class="text-2xl font-bold">Deposita 50%</p>
-                                    </div>
-                                    <div class="text-center">
-                                        <i class="fa-solid fa-box-open text-6xl text-orange-500 mb-2"></i>
-                                        <p class="text-2xl font-bold">Recibe y Paga</p>
-                                    </div>
-                                </div>
+        </div>
 
-                                <div class="bg-orange-50 p-6 rounded-2xl flex justify-between items-center">
-                                    <div>
-                                        <p class="text-3xl font-bold text-slate-900">¡Cotiza sin compromiso!</p>
-                                        <p class="text-xl text-slate-600">Entregas en <span class="config-city font-bold">[Tu Ciudad]</span></p>
-                                    </div>
-                                    <div class="text-right">
-                                        <p class="text-4xl font-extrabold text-slate-900 config-phone">123 456 7890</p>
-                                    </div>
+        <!-- Feed Posts Section -->
+        <h2 class="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-purple-500 pl-4">Posts para Feed (Facebook / Instagram)</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            
+            <!-- Post 1: Pasos -->
+            <div>
+                <h3 class="font-bold text-slate-700 mb-2">1. Cómo Funciona</h3>
+                <div class="preview-container post-preview rounded-2xl shadow-lg bg-white relative">
+                    <div class="post-size bg-white p-12 flex flex-col justify-between border-[20px] border-orange-50">
+                        <h2 class="text-7xl font-extrabold text-center text-slate-900">¿CÓMO PEDIR?</h2>
+                        
+                        <div class="space-y-8">
+                            <div class="flex items-center gap-8 bg-slate-50 p-6 rounded-2xl">
+                                <div class="w-24 h-24 bg-orange-500 text-white rounded-full flex items-center justify-center text-5xl font-bold">1</div>
+                                <p class="text-4xl font-medium text-slate-700">Elige tu ropa en Shein/Temu</p>
+                            </div>
+                            <div class="flex items-center gap-8 bg-slate-50 p-6 rounded-2xl">
+                                <div class="w-24 h-24 bg-orange-500 text-white rounded-full flex items-center justify-center text-5xl font-bold">2</div>
+                                <p class="text-4xl font-medium text-slate-700">Mándame los links</p>
+                            </div>
+                            <div class="flex items-center gap-8 bg-slate-50 p-6 rounded-2xl">
+                                <div class="w-24 h-24 bg-orange-500 text-white rounded-full flex items-center justify-center text-5xl font-bold">3</div>
+                                <p class="text-4xl font-medium text-slate-700">Paga el 50% en Oxxo</p>
+                            </div>
+                        </div>
+
+                        <div class="text-center bg-slate-900 text-white p-6 rounded-xl">
+                            <p class="text-3xl font-bold">WhatsApp: <span class="config-phone text-orange-400">1234567890</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post 2: Frase -->
+            <div>
+                <h3 class="font-bold text-slate-700 mb-2">2. Frase Motivacional</h3>
+                <div class="preview-container post-preview rounded-2xl shadow-lg bg-white relative">
+                    <div class="post-size bg-slate-900 text-white p-12 flex flex-col justify-center items-center text-center">
+                        <h2 class="text-8xl font-extrabold leading-tight mb-8">
+                            LA VIDA ES <br> CORTA. <br> <span class="text-orange-500">CÓMPRATE <br> ESE OUTFIT.</span>
+                        </h2>
+                        <p class="text-4xl text-slate-400">Nosotros te lo traemos a <span class="config-city text-white">[Tu Ciudad]</span></p>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Post 3: Info -->
+             <div>
+                <h3 class="font-bold text-slate-700 mb-2">3. Tarjeta Digital</h3>
+                <div class="preview-container post-preview rounded-2xl shadow-lg bg-white relative">
+                    <div class="post-size bg-gradient-to-r from-orange-400 to-pink-500 p-12 flex items-center justify-center">
+                        <div class="bg-white/95 backdrop-blur rounded-3xl p-16 text-center w-full shadow-2xl">
+                            <div class="w-32 h-32 bg-slate-900 text-white rounded-full flex items-center justify-center text-6xl mx-auto mb-8">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                            </div>
+                            <h2 class="text-6xl font-extrabold text-slate-900 mb-4">Pedidos Mary</h2>
+                            <p class="text-3xl text-slate-500 mb-8 uppercase tracking-widest">Personal Shopper</p>
+                            
+                            <div class="space-y-6 text-left inline-block">
+                                <div class="flex items-center gap-6 text-3xl text-slate-700">
+                                    <i class="fa-brands fa-whatsapp text-green-500"></i> <span class="config-phone">1234567890</span>
+                                </div>
+                                <div class="flex items-center gap-6 text-3xl text-slate-700">
+                                    <i class="fa-solid fa-location-dot text-red-500"></i> <span class="config-city">[Tu Ciudad]</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    <!-- Printables Section -->
+        <h2 class="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-blue-500 pl-4">Material para Imprimir</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            
+            <!-- Flyer -->
+            <div>
+                <h3 class="font-bold text-slate-700 mb-2">1. Volante Media Carta (2 por hoja)</h3>
+                <div class="preview-container rounded-2xl shadow-lg bg-white relative p-4">
+                    <div id="flyer-print" class="bg-white w-[816px] h-[1056px] origin-top-left scale-[0.3] border border-gray-200 p-8 flex flex-col gap-8">
+                        <!-- Top Half -->
+                        <div class="h-1/2 border-b-2 border-dashed border-gray-300 pb-8 flex flex-col justify-between">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h1 class="text-6xl font-extrabold text-slate-900">PEDIDOS <br> <span class="text-orange-600">MARY</span></h1>
+                                    <p class="text-2xl text-slate-500 mt-2">Tu Personal Shopper de Confianza</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="bg-slate-900 text-white px-6 py-2 rounded-full text-2xl font-bold mb-2">SHEIN & TEMU</div>
+                                    <p class="text-xl text-slate-600">Sin Tarjeta de Crédito</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-around items-center my-4">
+                                <div class="text-center">
+                                    <i class="fa-brands fa-whatsapp text-6xl text-green-500 mb-2"></i>
+                                    <p class="text-2xl font-bold">Manda Links</p>
+                                </div>
+                                <div class="text-center">
+                                    <i class="fa-solid fa-money-bill-wave text-6xl text-blue-500 mb-2"></i>
+                                    <p class="text-2xl font-bold">Deposita 50%</p>
+                                </div>
+                                <div class="text-center">
+                                    <i class="fa-solid fa-box-open text-6xl text-orange-500 mb-2"></i>
+                                    <p class="text-2xl font-bold">Recibe y Paga</p>
                                 </div>
                             </div>
 
-                            <!-- Bottom Half (Duplicate) -->
-                            <div class="h-1/2 pt-8 flex flex-col justify-between">
-                                <div class="flex justify-between items-start">
-                                    <div>
-                                        <h1 class="text-6xl font-extrabold text-slate-900">PEDIDOS <br> <span class="text-orange-600">MARY</span></h1>
-                                        <p class="text-2xl text-slate-500 mt-2">Tu Personal Shopper de Confianza</p>
-                                    </div>
-                                    <div class="text-right">
-                                        <div class="bg-slate-900 text-white px-6 py-2 rounded-full text-2xl font-bold mb-2">SHEIN & TEMU</div>
-                                        <p class="text-xl text-slate-600">Sin Tarjeta de Crédito</p>
-                                    </div>
+                            <div class="bg-orange-50 p-6 rounded-2xl flex justify-between items-center">
+                                <div>
+                                    <p class="text-3xl font-bold text-slate-900">¡Cotiza sin compromiso!</p>
+                                    <p class="text-xl text-slate-600">Entregas en <span class="config-city font-bold">[Tu Ciudad]</span></p>
                                 </div>
-                                
-                                <div class="flex justify-around items-center my-4">
-                                    <div class="text-center">
-                                        <i class="fa-brands fa-whatsapp text-6xl text-green-500 mb-2"></i>
-                                        <p class="text-2xl font-bold">Manda Links</p>
-                                    </div>
-                                    <div class="text-center">
-                                        <i class="fa-solid fa-money-bill-wave text-6xl text-blue-500 mb-2"></i>
-                                        <p class="text-2xl font-bold">Deposita 50%</p>
-                                    </div>
-                                    <div class="text-center">
-                                        <i class="fa-solid fa-box-open text-6xl text-orange-500 mb-2"></i>
-                                        <p class="text-2xl font-bold">Recibe y Paga</p>
-                                    </div>
+                                <div class="text-right">
+                                    <p class="text-4xl font-extrabold text-slate-900 config-phone">123 456 7890</p>
                                 </div>
+                            </div>
+                        </div>
 
-                                <div class="bg-orange-50 p-6 rounded-2xl flex justify-between items-center">
-                                    <div>
-                                        <p class="text-3xl font-bold text-slate-900">¡Cotiza sin compromiso!</p>
-                                        <p class="text-xl text-slate-600">Entregas en <span class="config-city font-bold">[Tu Ciudad]</span></p>
-                                    </div>
-                                    <div class="text-right">
-                                        <p class="text-4xl font-extrabold text-slate-900 config-phone">123 456 7890</p>
-                                    </div>
+                        <!-- Bottom Half (Duplicate) -->
+                        <div class="h-1/2 pt-8 flex flex-col justify-between">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h1 class="text-6xl font-extrabold text-slate-900">PEDIDOS <br> <span class="text-orange-600">MARY</span></h1>
+                                    <p class="text-2xl text-slate-500 mt-2">Tu Personal Shopper de Confianza</p>
                                 </div>
+                                <div class="text-right">
+                                    <div class="bg-slate-900 text-white px-6 py-2 rounded-full text-2xl font-bold mb-2">SHEIN & TEMU</div>
+                                    <p class="text-xl text-slate-600">Sin Tarjeta de Crédito</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-around items-center my-4">
+                                <div class="text-center">
+                                    <i class="fa-brands fa-whatsapp text-6xl text-green-500 mb-2"></i>
+                                    <p class="text-2xl font-bold">Manda Links</p>
+                                </div>
+                                <div class="text-center">
+                                    <i class="fa-solid fa-money-bill-wave text-6xl text-blue-500 mb-2"></i>
+                                    <p class="text-2xl font-bold">Deposita 50%</p>
+                                </div>
+                                <div class="text-center">
+                                    <i class="fa-solid fa-box-open text-6xl text-orange-500 mb-2"></i>
+                                    <p class="text-2xl font-bold">Recibe y Paga</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-orange-50 p-6 rounded-2xl flex justify-between items-center">
+                                <div>
+                                    <p class="text-3xl font-bold text-slate-900">¡Cotiza sin compromiso!</p>
+                                    <p class="text-xl text-slate-600">Entregas en <span class="config-city font-bold">[Tu Ciudad]</span></p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-4xl font-extrabold text-slate-900 config-phone">123 456 7890</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-[320px] flex gap-4">
+                        <button onclick="downloadImage('flyer-print', 'volante_pedidos_mary')" class="flex-1 bg-slate-900 text-white py-2 rounded-lg font-bold hover:bg-slate-800 transition">
+                            <i class="fa-solid fa-download mr-2"></i> Descargar Imagen
+                        </button>
+                        <button onclick="printElement('flyer-print')" class="flex-1 bg-blue-600 text-white py-2 rounded-lg font-bold hover:bg-blue-700 transition">
+                            <i class="fa-solid fa-print mr-2"></i> Imprimir
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lona Exterior -->
+            <div>
+                <h3 class="font-bold text-slate-700 mb-2">2. Lona Exterior (1x1 Metro)</h3>
+                <div class="preview-container rounded-2xl shadow-lg bg-white relative p-4">
+                    <div id="lona-print" class="bg-gradient-to-r from-slate-900 to-slate-800 w-[1000px] h-[1000px] origin-top-left scale-[0.25] text-white flex flex-col items-center justify-center p-16 text-center border-8 border-orange-500">
+                        <div class="bg-orange-500 text-white px-12 py-4 rounded-full text-5xl font-bold mb-12 uppercase tracking-widest">Punto de Entrega</div>
+                        
+                        <h1 class="text-[140px] font-extrabold leading-none mb-8">
+                            SHEIN <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500">&</span> TEMU
+                        </h1>
+                        
+                        <p class="text-6xl font-bold text-slate-300 mb-16">¡Haz tu pedido aquí!</p>
+                        
+                        <div class="bg-white text-slate-900 p-12 rounded-[50px] w-full flex items-center justify-center gap-8 shadow-2xl">
+                            <i class="fa-brands fa-whatsapp text-[100px] text-green-500"></i>
+                            <div class="text-left">
+                                <p class="text-4xl font-bold text-slate-500">WhatsApp:</p>
+                                <p class="text-[80px] font-extrabold config-phone leading-none">123 456 7890</p>
                             </div>
                         </div>
                         
-                        <div class="mt-[320px] flex gap-4">
-                            <button onclick="downloadImage('flyer-print', 'volante_pedidos_mary')" class="flex-1 bg-slate-900 text-white py-2 rounded-lg font-bold hover:bg-slate-800 transition">
-                                <i class="fa-solid fa-download mr-2"></i> Descargar Imagen
-                            </button>
-                            <button onclick="printElement('flyer-print')" class="flex-1 bg-blue-600 text-white py-2 rounded-lg font-bold hover:bg-blue-700 transition">
-                                <i class="fa-solid fa-print mr-2"></i> Imprimir
-                            </button>
+                        <div class="mt-16 flex gap-12 text-4xl font-bold text-slate-400">
+                            <div class="flex items-center gap-4"><i class="fa-solid fa-check text-green-500"></i> Sin Tarjeta</div>
+                            <div class="flex items-center gap-4"><i class="fa-solid fa-check text-green-500"></i> Pago en Efectivo</div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Lona Exterior -->
-                <div>
-                    <h3 class="font-bold text-slate-700 mb-2">2. Lona Exterior (1x1 Metro)</h3>
-                    <div class="preview-container rounded-2xl shadow-lg bg-white relative p-4">
-                        <div id="lona-print" class="bg-gradient-to-r from-slate-900 to-slate-800 w-[1000px] h-[1000px] origin-top-left scale-[0.25] text-white flex flex-col items-center justify-center p-16 text-center border-8 border-orange-500">
-                            <div class="bg-orange-500 text-white px-12 py-4 rounded-full text-5xl font-bold mb-12 uppercase tracking-widest">Punto de Entrega</div>
-                            
-                            <h1 class="text-[140px] font-extrabold leading-none mb-8">
-                                SHEIN <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500">&</span> TEMU
-                            </h1>
-                            
-                            <p class="text-6xl font-bold text-slate-300 mb-16">¡Haz tu pedido aquí!</p>
-                            
-                            <div class="bg-white text-slate-900 p-12 rounded-[50px] w-full flex items-center justify-center gap-8 shadow-2xl">
-                                <i class="fa-brands fa-whatsapp text-[100px] text-green-500"></i>
-                                <div class="text-left">
-                                    <p class="text-4xl font-bold text-slate-500">WhatsApp:</p>
-                                    <p class="text-[80px] font-extrabold config-phone leading-none">123 456 7890</p>
-                                </div>
-                            </div>
-                            
-                            <div class="mt-16 flex gap-12 text-4xl font-bold text-slate-400">
-                                <div class="flex items-center gap-4"><i class="fa-solid fa-check text-green-500"></i> Sin Tarjeta</div>
-                                <div class="flex items-center gap-4"><i class="fa-solid fa-check text-green-500"></i> Pago en Efectivo</div>
-                            </div>
-                        </div>
-
-                        <div class="mt-[260px] flex gap-4">
-                            <button onclick="downloadImage('lona-print', 'lona_exterior_pedidos_mary')" class="flex-1 bg-slate-900 text-white py-2 rounded-lg font-bold hover:bg-slate-800 transition">
-                                <i class="fa-solid fa-download mr-2"></i> Descargar para Imprenta
-                            </button>
-                        </div>
+                    <div class="mt-[260px] flex gap-4">
+                        <button onclick="downloadImage('lona-print', 'lona_exterior_pedidos_mary')" class="flex-1 bg-slate-900 text-white py-2 rounded-lg font-bold hover:bg-slate-800 transition">
+                            <i class="fa-solid fa-download mr-2"></i> Descargar para Imprenta
+                        </button>
                     </div>
                 </div>
-
             </div>
 
-            <!-- Stickers & Cards Section -->
-            <h2 class="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-green-500 pl-4">Empaque y Fidelización</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                
-                <!-- Sticker -->
-                <div>
-                    <h3 class="font-bold text-slate-700 mb-2">3. Sticker Redondo (Para Bolsas)</h3>
-                    <div class="preview-container rounded-2xl shadow-lg bg-white relative p-4 flex justify-center">
-                        <div id="sticker-print" class="w-[500px] h-[500px] origin-top-left scale-[0.5] bg-white rounded-full border-[20px] border-orange-500 flex flex-col items-center justify-center text-center p-8 shadow-xl relative overflow-hidden">
-                            <div class="absolute top-0 left-0 w-full h-full bg-orange-50 opacity-50 -z-10"></div>
-                            
-                            <i class="fa-solid fa-heart text-6xl text-orange-500 mb-4 animate-bounce"></i>
-                            <h2 class="text-5xl font-extrabold text-slate-900 mb-2">¡GRACIAS!</h2>
-                            <p class="text-3xl text-slate-600 mb-6">Por tu compra</p>
-                            
-                            <div class="bg-slate-900 text-white px-8 py-2 rounded-full text-2xl font-bold mb-4">Pedidos Mary</div>
-                            <p class="text-xl font-bold text-slate-500 config-phone">123 456 7890</p>
-                        </div>
+        </div>
 
-                        <div class="absolute bottom-4 left-4 right-4 flex gap-4">
-                            <button onclick="downloadImage('sticker-print', 'sticker_redondo')" class="flex-1 bg-slate-900 text-white py-2 rounded-lg font-bold hover:bg-slate-800 transition">
-                                <i class="fa-solid fa-download mr-2"></i> Descargar
-                            </button>
-                            <button onclick="printElement('sticker-print')" class="flex-1 bg-blue-600 text-white py-2 rounded-lg font-bold hover:bg-blue-700 transition">
-                                <i class="fa-solid fa-print mr-2"></i> Imprimir
-                            </button>
-                        </div>
-                        <!-- Spacer for the scale -->
-                        <div class="h-[250px]"></div> 
+        <!-- Stickers & Cards Section -->
+        <h2 class="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-green-500 pl-4">Empaque y Fidelización</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            
+            <!-- Sticker -->
+            <div>
+                <h3 class="font-bold text-slate-700 mb-2">3. Sticker Redondo (Para Bolsas)</h3>
+                <div class="preview-container rounded-2xl shadow-lg bg-white relative p-4 flex justify-center">
+                    <div id="sticker-print" class="w-[500px] h-[500px] origin-top-left scale-[0.5] bg-white rounded-full border-[20px] border-orange-500 flex flex-col items-center justify-center text-center p-8 shadow-xl relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-full bg-orange-50 opacity-50 -z-10"></div>
+                        
+                        <i class="fa-solid fa-heart text-6xl text-orange-500 mb-4 animate-bounce"></i>
+                        <h2 class="text-5xl font-extrabold text-slate-900 mb-2">¡GRACIAS!</h2>
+                        <p class="text-3xl text-slate-600 mb-6">Por tu compra</p>
+                        
+                        <div class="bg-slate-900 text-white px-8 py-2 rounded-full text-2xl font-bold mb-4">Pedidos Mary</div>
+                        <p class="text-xl font-bold text-slate-500 config-phone">123 456 7890</p>
                     </div>
-                </div>
 
-                <!-- Thank You Card -->
-                <div>
-                    <h3 class="font-bold text-slate-700 mb-2">4. Tarjeta "Próximo Pedido"</h3>
-                    <div class="preview-container rounded-2xl shadow-lg bg-white relative p-4">
-                        <div id="card-print" class="w-[600px] h-[400px] origin-top-left scale-[0.5] bg-slate-900 text-white p-8 flex flex-col justify-between border-4 border-dashed border-slate-700">
-                            <div class="flex justify-between items-start">
-                                <h2 class="text-4xl font-extrabold text-orange-500">¡TE REGALO $10!</h2>
-                                <i class="fa-brands fa-instagram text-4xl text-white"></i>
-                            </div>
-                            
-                            <div class="text-center">
-                                <p class="text-2xl mb-2">Sube una foto de tu pedido y etiquétanos.</p>
-                                <p class="text-xl text-slate-400">Te descontamos $10 pesos en tu siguiente compra.</p>
-                            </div>
-
-                            <div class="flex justify-between items-end border-t border-slate-700 pt-4">
-                                <div>
-                                    <p class="text-sm text-slate-400 uppercase tracking-widest">WhatsApp</p>
-                                    <p class="text-2xl font-bold config-phone">123 456 7890</p>
-                                </div>
-                                <div class="text-right">
-                                    <p class="text-sm text-slate-400 uppercase tracking-widest">Personal Shopper</p>
-                                    <p class="text-2xl font-bold">Pedidos Mary</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="absolute bottom-4 left-4 right-4 flex gap-4">
-                            <button onclick="downloadImage('card-print', 'tarjeta_descuento')" class="flex-1 bg-slate-900 text-white py-2 rounded-lg font-bold hover:bg-slate-800 transition">
-                                <i class="fa-solid fa-download mr-2"></i> Descargar
-                            </button>
-                            <button onclick="printElement('card-print')" class="flex-1 bg-blue-600 text-white py-2 rounded-lg font-bold hover:bg-blue-700 transition">
-                                <i class="fa-solid fa-print mr-2"></i> Imprimir
-                            </button>
-                        </div>
-                        <!-- Spacer for the scale -->
-                        <div class="h-[200px]"></div>
+                    <div class="absolute bottom-4 left-4 right-4 flex gap-4">
+                        <button onclick="downloadImage('sticker-print', 'sticker_redondo')" class="flex-1 bg-slate-900 text-white py-2 rounded-lg font-bold hover:bg-slate-800 transition">
+                            <i class="fa-solid fa-download mr-2"></i> Descargar
+                        </button>
+                        <button onclick="printElement('sticker-print')" class="flex-1 bg-blue-600 text-white py-2 rounded-lg font-bold hover:bg-blue-700 transition">
+                            <i class="fa-solid fa-print mr-2"></i> Imprimir
+                        </button>
                     </div>
+                    <!-- Spacer for the scale -->
+                    <div class="h-[250px]"></div> 
                 </div>
+            </div>
 
+            <!-- Thank You Card -->
+            <div>
+                <h3 class="font-bold text-slate-700 mb-2">4. Tarjeta "Próximo Pedido"</h3>
+                <div class="preview-container rounded-2xl shadow-lg bg-white relative p-4">
+                    <div id="card-print" class="w-[600px] h-[400px] origin-top-left scale-[0.5] bg-slate-900 text-white p-8 flex flex-col justify-between border-4 border-dashed border-slate-700">
+                        <div class="flex justify-between items-start">
+                            <h2 class="text-4xl font-extrabold text-orange-500">¡TE REGALO $10!</h2>
+                            <i class="fa-brands fa-instagram text-4xl text-white"></i>
+                        </div>
+                        
+                        <div class="text-center">
+                            <p class="text-2xl mb-2">Sube una foto de tu pedido y etiquétanos.</p>
+                            <p class="text-xl text-slate-400">Te descontamos $10 pesos en tu siguiente compra.</p>
+                        </div>
+
+                        <div class="flex justify-between items-end border-t border-slate-700 pt-4">
+                            <div>
+                                <p class="text-sm text-slate-400 uppercase tracking-widest">WhatsApp</p>
+                                <p class="text-2xl font-bold config-phone">123 456 7890</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-slate-400 uppercase tracking-widest">Personal Shopper</p>
+                                <p class="text-2xl font-bold">Pedidos Mary</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="absolute bottom-4 left-4 right-4 flex gap-4">
+                        <button onclick="downloadImage('card-print', 'tarjeta_descuento')" class="flex-1 bg-slate-900 text-white py-2 rounded-lg font-bold hover:bg-slate-800 transition">
+                            <i class="fa-solid fa-download mr-2"></i> Descargar
+                        </button>
+                        <button onclick="printElement('card-print')" class="flex-1 bg-blue-600 text-white py-2 rounded-lg font-bold hover:bg-blue-700 transition">
+                            <i class="fa-solid fa-print mr-2"></i> Imprimir
+                        </button>
+                    </div>
+                    <!-- Spacer for the scale -->
+                    <div class="h-[200px]"></div>
+                </div>
             </div>
 
         </div>
@@ -434,6 +429,35 @@
 
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script>
+        // Login Logic
+        const CORRECT_PASSWORD = "mary"; // Contraseña simple
+        const loginModal = document.getElementById('login-modal');
+        const secureContent = document.getElementById('secure-content');
+        const loginForm = document.getElementById('login-form');
+        const passwordInput = document.getElementById('password-input');
+        const errorMsg = document.getElementById('error-msg');
+
+        // Check if already logged in
+        if (sessionStorage.getItem('marketing_auth') === 'true') {
+            showContent();
+        }
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (passwordInput.value === CORRECT_PASSWORD) {
+                sessionStorage.setItem('marketing_auth', 'true');
+                showContent();
+            } else {
+                errorMsg.classList.remove('hidden');
+                passwordInput.classList.add('border-red-500');
+            }
+        });
+
+        function showContent() {
+            loginModal.classList.add('hidden');
+            secureContent.classList.remove('hidden');
+        }
+
         // Add download buttons to existing items
         document.querySelectorAll('.story-preview, .post-preview').forEach((container, index) => {
             if (container.querySelector('#flyer-print')) return; // Skip flyer
@@ -508,22 +532,6 @@
                 printWindow.print();
                 printWindow.close();
             }, 1000);
-        }
-    </script>
-    <script>
-        function checkPassword(e) {
-            e.preventDefault();
-            const input = document.getElementById('passwordInput').value;
-            const errorMsg = document.getElementById('error-msg');
-            
-            // Simple check (Not secure for sensitive data, but fine for hiding templates)
-            if (input === 'mary2024') {
-                document.getElementById('login-overlay').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-                document.getElementById('main-content').classList.remove('hidden');
-            } else {
-                errorMsg.classList.remove('hidden');
-            }
         }
     </script>
 </body>
